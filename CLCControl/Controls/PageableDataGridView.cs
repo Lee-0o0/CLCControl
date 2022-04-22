@@ -152,6 +152,7 @@ namespace CLCControls.Controls
             if(FatherControl != null && FatherControl is CLCComboBox)
             {
                 Data = ((CLCComboBox)FatherControl).Query(GetParameters());
+                dataDgv.Focus();
             }
         }
 
@@ -268,6 +269,14 @@ namespace CLCControls.Controls
             if (e.KeyCode == Keys.Down)
             {
                 dataDgv.Focus();
+            }
+        }
+
+        private void PageSizeCboAndPageNumTxt_KeyUp(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                Query();
             }
         }
     }

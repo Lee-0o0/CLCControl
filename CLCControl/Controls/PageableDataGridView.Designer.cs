@@ -168,6 +168,7 @@ namespace CLCControls.Controls
             this.pageSizeCbo.AutoSize = false;
             this.pageSizeCbo.Name = "pageSizeCbo";
             this.pageSizeCbo.Size = new System.Drawing.Size(50, 25);
+            this.pageSizeCbo.KeyUp += new System.Windows.Forms.KeyEventHandler(this.PageSizeCboAndPageNumTxt_KeyUp);
             // 
             // toolStripSeparator1
             // 

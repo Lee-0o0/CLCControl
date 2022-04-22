@@ -139,11 +139,11 @@ namespace CLCControls.Controls
         }
 
         /// <summary>
-        /// 在搜索框中按下 ↓ 时，焦点移到数据表
+        /// 在搜索框中按下 ↓ 或 Enter键 时，焦点移到数据表
         /// </summary>
         private void SearchTxt_KeyUp(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Down)
+            if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Enter)
                 acDgv.Focus();
         }
 
