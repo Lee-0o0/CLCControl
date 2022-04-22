@@ -1,4 +1,5 @@
-﻿using CLCControls.Model;
+﻿using CLCControl.Forms;
+using CLCControls.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -115,6 +116,32 @@ namespace Test
             clcComboBox4.QueryEvent -= QueryStudents;
             clcComboBox4.QueryEvent += QueryPhones;
             clcComboBox4.CLCDisplayMember = "Brand";
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            Form2 form2 = new Form2();
+            form2.Show();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            CLCMessageBox.ShowMessageBox("MessaOf course I could count the number of NewLines and add: Newlines * LineHeight, and then -given that I manage to put 60 chars per line, just divide the number of c提供在使用指定大小创建文本初始边框时\r\n，使用指定的字体和格式说明绘制的指定文本的大小（以像素为单位）。\nhars and add as many LineHeight pixels as needed.ge Type Message Type Message Type Message Type Message Type Message Type Message Type Message Type Message Type Message Type Message Type Message Type Message Type Message Type ", CLCMessageBox.MessageType.SUCCESS);
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            CLCMessageBox.ShowMessageBox("info", CLCMessageBox.MessageType.INFO);
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            CLCMessageBox.ShowMessageBox("warn", CLCMessageBox.MessageType.WARN);
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            CLCMessageBox.ShowMessageBox("error", CLCMessageBox.MessageType.ERROR);
         }
     }
 }

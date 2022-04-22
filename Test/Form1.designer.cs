@@ -36,11 +36,16 @@ namespace Test
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
+            this.button9 = new System.Windows.Forms.Button();
             this.clcComboBox4 = new CLCControls.Controls.CLCComboBox();
             this.clcComboBox3 = new CLCControls.Controls.CLCComboBox();
             this.clcComboBox2 = new CLCControls.Controls.CLCComboBox();
             this.clcComboBox1 = new CLCControls.Controls.CLCComboBox();
-            this.button4 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -107,6 +112,66 @@ namespace Test
             this.label4.Size = new System.Drawing.Size(77, 12);
             this.label4.TabIndex = 9;
             this.label4.Text = "下拉分页列表";
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(419, 139);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(97, 23);
+            this.button4.TabIndex = 11;
+            this.button4.Text = "改变查询方法";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(95, 199);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(75, 23);
+            this.button5.TabIndex = 12;
+            this.button5.Text = "窗体移动";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(95, 242);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(146, 23);
+            this.button6.TabIndex = 13;
+            this.button6.Text = "显示消息框-success";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(95, 271);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(146, 23);
+            this.button7.TabIndex = 14;
+            this.button7.Text = "显示消息框-info";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(95, 304);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(146, 23);
+            this.button8.TabIndex = 15;
+            this.button8.Text = "显示消息框-warn";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
+            // button9
+            // 
+            this.button9.Location = new System.Drawing.Point(95, 333);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(146, 23);
+            this.button9.TabIndex = 16;
+            this.button9.Text = "显示消息框-error";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
             // clcComboBox4
             // 
@@ -184,22 +249,17 @@ namespace Test
             this.clcComboBox1.Size = new System.Drawing.Size(314, 20);
             this.clcComboBox1.TabIndex = 0;
             // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(419, 139);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(97, 23);
-            this.button4.TabIndex = 11;
-            this.button4.Text = "改变查询方法";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(688, 450);
+            this.Controls.Add(this.button9);
+            this.Controls.Add(this.button8);
+            this.Controls.Add(this.button7);
+            this.Controls.Add(this.button6);
+            this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.clcComboBox4);
             this.Controls.Add(this.label4);
@@ -213,6 +273,7 @@ namespace Test
             this.Controls.Add(this.label1);
             this.Controls.Add(this.clcComboBox1);
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
@@ -234,6 +295,11 @@ namespace Test
         private System.Windows.Forms.Label label4;
         private CLCControls.Controls.CLCComboBox clcComboBox4;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button button9;
     }
 }
 
