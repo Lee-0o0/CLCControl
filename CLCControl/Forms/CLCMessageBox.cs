@@ -103,11 +103,7 @@ namespace CLCControl.Forms
             /// <summary>
             /// 父窗体右下角
             /// </summary>
-            PARENT_RIGHT_BOTTOM,
-            /// <summary>
-            /// 手动设置
-            /// </summary>
-            MANUAL
+            PARENT_RIGHT_BOTTOM
         }
 
         #region 池的相关设置
@@ -127,7 +123,7 @@ namespace CLCControl.Forms
             InitializeComponent();
         }
 
-        public static void ShowMessageBox(string msg, MessageType type, MessageBoxPosition position = MessageBoxPosition.MANUAL)
+        public static void ShowMessageBox(string msg, MessageType type, MessageBoxPosition position = MessageBoxPosition.SCREEN_CENTER)
         {
             // 初始化池
             if(MESSAGE_BOX_POOL == null)
@@ -166,7 +162,7 @@ namespace CLCControl.Forms
             }
 
             messageBox.SetMessage(msg, type);
-            messageBox.SetPosition();
+            messageBox.SetPosition(position);
 
             if (messageBox.inPool)
             {
@@ -178,7 +174,6 @@ namespace CLCControl.Forms
             messageBox.GetTimer().Interval = 1;
             messageBox.GetTimer().Start();
 
-            messageBox.StartPosition = FormStartPosition.CenterScreen;
             messageBox.Show();
         }
 
@@ -222,9 +217,33 @@ namespace CLCControl.Forms
             this.closePic.Location = new Point(this.closePic.Location.X, (this.Height - this.closePic.Height) / 2);
         }
 
-        private void SetPosition()
+        private void SetPosition(MessageBoxPosition position)
         {
+            int screenWidth = Screen.PrimaryScreen.WorkingArea.Width;
+            int screenHeight = Screen.PrimaryScreen.WorkingArea.Height;
 
+            this.StartPosition = FormStartPosition.Manual;
+            switch (position)
+            {
+                case MessageBoxPosition.SCREEN_CENTER:
+                    this.Location = new Point((screenWidth - Width) / 2,(screenHeight - Height) / 2);
+                    break;
+                case MessageBoxPosition.SCREEN_LEFT_TOP:
+                    this.Location = new Point(10, 10);
+                    break;
+                case MessageBoxPosition.SCREEN_LETF_BOTTOM:
+                    this.Location = new Point(10, screenHeight - Height - 10);
+                    break;
+                case MessageBoxPosition.SCREEN_RIGHT_TOP:
+                    this.Location = new Point(screenWidth - Width - 10,10);
+                    break;
+                case MessageBoxPosition.SCREEN_RIGHT_BOTTOM:
+                    this.Location = new Point(screenWidth - Width - 10, screenHeight - Height - 10);
+                    break;
+                case MessageBoxPosition.PARENT_CENTER:
+                    
+                    break;
+            }
         }
 
         /// <summary>
