@@ -131,17 +131,17 @@ namespace Test
 
         private void button7_Click(object sender, EventArgs e)
         {
-            CLCMessageBox.ShowMessageBox("info", CLCMessageBox.MessageType.INFO,CLCMessageBox.MessageBoxPosition.SCREEN_LEFT_TOP);
+            CLCMessageBox.ShowMessageBox("info", CLCMessageBox.MessageType.INFO,CLCMessageBox.MessageBoxPosition.PARENT_RIGHT_BOTTOM,this);
         }
 
         private void button8_Click(object sender, EventArgs e)
         {
-            CLCMessageBox.ShowMessageBox("warn", CLCMessageBox.MessageType.WARN, CLCMessageBox.MessageBoxPosition.SCREEN_LETF_BOTTOM);
+            CLCMessageBox.ShowMessageBox("warn", CLCMessageBox.MessageType.WARN, CLCMessageBox.MessageBoxPosition.PARENT_CENTER,this);
         }
 
         private void button9_Click(object sender, EventArgs e)
         {
-            CLCMessageBox.ShowMessageBox("error", CLCMessageBox.MessageType.ERROR,CLCMessageBox.MessageBoxPosition.SCREEN_RIGHT_BOTTOM);
+            CLCMessageBox.ShowMessageBox("error", CLCMessageBox.MessageType.ERROR,CLCMessageBox.MessageBoxPosition.PARENT_LEFT_TOP,this);
         }
     }
 }
