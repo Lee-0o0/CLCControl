@@ -8,6 +8,11 @@ namespace Test.Model
 {
     public class Student
     {
+        public delegate void ShowGreetingHandler();
+
+        public event ShowGreetingHandler GreetingHander;
+
+
         [ColumnStyle(Visible = false)]
         public object Tagptr => this;
 
