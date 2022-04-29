@@ -36,7 +36,8 @@ namespace Test
             ToolStrip toolStrip= propertyGrid1.Controls.OfType<ToolStrip>().FirstOrDefault();
             if(toolStrip != null)
             {
-                toolStrip.LayoutStyle = ToolStripLayoutStyle.Flow;
+                toolStrip.CanOverflow = true;
+                toolStrip.LayoutStyle = ToolStripLayoutStyle.HorizontalStackWithOverflow;
                 toolStrip.GripStyle = ToolStripGripStyle.Visible;
             }
 

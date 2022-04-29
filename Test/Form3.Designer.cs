@@ -106,7 +106,7 @@ namespace Test
             // 
             this.propertyGrid1.Location = new System.Drawing.Point(254, 124);
             this.propertyGrid1.Name = "propertyGrid1";
-            this.propertyGrid1.Size = new System.Drawing.Size(386, 305);
+            this.propertyGrid1.Size = new System.Drawing.Size(191, 305);
             this.propertyGrid1.TabIndex = 4;
             // 
             // eventLog1
