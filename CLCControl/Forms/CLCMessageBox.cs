@@ -107,26 +107,66 @@ namespace CLCControl.Forms
         }
 
         #region 池的相关设置
-        public static int POOL_SIZE = 10;
-
-        private static int IDLE_NUM = 0;
-
-        private static CLCMessageBox[] MESSAGE_BOX_POOL;
+        private static CLCMessageBox[] MESSAGE_BOX_POOL;      // 池
+        public static int POOL_SIZE = 10;                     // 池的大小
+        private static int IDLE_NUM = 0;                      // 当前池中空闲的窗体数量
         #endregion
 
+        #region 窗体字段
         private bool inPool;
         private MessageBoxStatus status;
-
+        private int showSeconds;
+        #endregion
 
         private CLCMessageBox()
         {
             InitializeComponent();
         }
 
-        public static void ShowMessageBox(string msg, MessageType type, MessageBoxPosition position = MessageBoxPosition.SCREEN_CENTER, Form parent = null)
+        /// <summary>
+        /// 消息消息提示框
+        /// </summary>
+        /// <param name="msg">消息内容</param>
+        public static void ShowMessageBox(string msg)
+        {
+            ShowMessageBox(msg, MessageType.INFO);
+        }
+
+        /// <summary>
+        /// 显示消息框
+        /// </summary>
+        /// <param name="msg">消息内容</param>
+        /// <param name="type">消息框样式：提醒、成功、警告、失败</param>
+        /// <param name="seconds">消息框持续时间(单位秒)，默认3秒</param>
+        /// <param name="position">消息框显示位置</param>
+        /// <param name="parent">父类界面</param>
+        public static void ShowMessageBox(string msg, MessageType type, int showSeconds = 3, MessageBoxPosition position = MessageBoxPosition.SCREEN_CENTER, Form parent = null)
+        {
+            CLCMessageBox messageBox = GetCLCMessageBox();
+
+            messageBox.showSeconds = showSeconds;
+            messageBox.SetMessage(msg, type);
+            messageBox.SetPosition(position, parent);
+
+            if (messageBox.inPool)
+            {
+                IDLE_NUM--;
+            }
+            messageBox.status = MessageBoxStatus.START;
+
+            messageBox.SetTimer();
+
+            messageBox.Show();
+        }
+
+        /// <summary>
+        /// 获取消息框
+        /// </summary>
+        /// <returns></returns>
+        private static CLCMessageBox GetCLCMessageBox()
         {
             // 初始化池
-            if(MESSAGE_BOX_POOL == null)
+            if (MESSAGE_BOX_POOL == null)
             {
                 MESSAGE_BOX_POOL = new CLCMessageBox[POOL_SIZE];
                 IDLE_NUM = POOL_SIZE;
@@ -161,22 +201,14 @@ namespace CLCControl.Forms
                 messageBox.inPool = false;
             }
 
-            messageBox.SetMessage(msg, type);
-            messageBox.SetPosition(position, parent);
-
-            if (messageBox.inPool)
-            {
-                IDLE_NUM--;
-            }
-            messageBox.status = MessageBoxStatus.START;
-
-            messageBox.GetTimer().Enabled = true;
-            messageBox.GetTimer().Interval = 1;
-            messageBox.GetTimer().Start();
-
-            messageBox.Show();
+            return messageBox;
         }
 
+        /// <summary>
+        /// 设置消息内容并动态改变窗体的高度
+        /// </summary>
+        /// <param name="msg">消息内容</param>
+        /// <param name="type">消息框样式</param>
         private void SetMessage(string msg, MessageType type)
         {
             // 根据消息类型设置背景色及图标
@@ -217,6 +249,11 @@ namespace CLCControl.Forms
             this.closePic.Location = new Point(this.closePic.Location.X, (this.Height - this.closePic.Height) / 2);
         }
 
+        /// <summary>
+        /// 设置消息框位置
+        /// </summary>
+        /// <param name="position">位置</param>
+        /// <param name="parent">父类界面</param>
         private void SetPosition(MessageBoxPosition position, Form parent = null)
         {
             int screenWidth = Screen.PrimaryScreen.WorkingArea.Width;
@@ -276,6 +313,17 @@ namespace CLCControl.Forms
         }
 
         /// <summary>
+        /// 设置定时器
+        /// </summary>
+        private void SetTimer()
+        {
+            System.Windows.Forms.Timer timer = this.GetTimer();
+            timer.Enabled = true;
+            timer.Interval = 1;
+            timer.Start();
+        }
+
+        /// <summary>
         /// 关闭窗体
         /// </summary>
         private void ClosePic_Click(object sender, EventArgs e)
@@ -289,6 +337,7 @@ namespace CLCControl.Forms
             {
                 this.status = MessageBoxStatus.IDLE;
                 IDLE_NUM++;
+                this.GetTimer().Stop();
                 this.Hide();
             }
             else
@@ -297,6 +346,10 @@ namespace CLCControl.Forms
             }
         }
 
+        /// <summary>
+        /// 获取定时器
+        /// </summary>
+        /// <returns></returns>
         private System.Windows.Forms.Timer GetTimer()
         {
             return timer1;
@@ -318,7 +371,7 @@ namespace CLCControl.Forms
                     }
                     break;
                 case MessageBoxStatus.SHOW:
-                    timer1.Interval = 3500;
+                    timer1.Interval = showSeconds*1000;
                     this.status = MessageBoxStatus.CLOSE;
                     break;
                 case MessageBoxStatus.CLOSE:
@@ -330,6 +383,7 @@ namespace CLCControl.Forms
                         {
                             this.status = MessageBoxStatus.IDLE;
                             IDLE_NUM++;
+                            this.GetTimer().Stop();
                             this.Hide();
                         }
                         else

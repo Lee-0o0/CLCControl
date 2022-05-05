@@ -66,12 +66,14 @@ namespace CLCControl.Forms
             // 
             // msgLbl
             // 
+            this.msgLbl.Font = new System.Drawing.Font("宋体", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.msgLbl.ForeColor = System.Drawing.Color.White;
             this.msgLbl.Location = new System.Drawing.Point(72, 12);
             this.msgLbl.Name = "msgLbl";
             this.msgLbl.Size = new System.Drawing.Size(170, 48);
             this.msgLbl.TabIndex = 2;
             this.msgLbl.Text = "label1";
-            this.msgLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.msgLbl.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // CLCMessageBox
             // 
